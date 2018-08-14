@@ -8,7 +8,7 @@ import org.openfact.client.services.DocumentsService;
 
 public class OpenfactClientFactory {
 
-    public OpenfactClientFactory() {
+    private OpenfactClientFactory() {
         // Just static methods
     }
 
