@@ -4,7 +4,7 @@
 
     <groupId>org.sistcoop</groupId>
     <artifactId>openfact-java-client</artifactId>
-    <version>1.0.0.Final</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <name>Openfact Java Client</name>
     <description>Openfact Java Client for manage UBl documents</description>
