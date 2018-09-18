@@ -88,7 +88,7 @@ public interface DocumentsService {
     @Produces(MediaType.APPLICATION_JSON)
     Response createInvoice(
             @PathParam("organizationName") String organizationName,
-            DocumentRepresentation invoice,
+            DocumentRequestRepresentation invoice,
             @QueryParam("async") boolean async
     );
 
@@ -107,7 +107,7 @@ public interface DocumentsService {
     Response updateInvoice(
             @PathParam("organizationName") String organizationName,
             @PathParam("id") String id,
-            DocumentRepresentation invoice,
+            DocumentRequestRepresentation invoice,
             @QueryParam("async") boolean async
     );
 
@@ -130,7 +130,7 @@ public interface DocumentsService {
     @Produces(MediaType.APPLICATION_JSON)
     Response createCreditNote(
             @PathParam("organizationName") String organizationName,
-            DocumentRepresentation creditNote,
+            DocumentRequestRepresentation creditNote,
             @QueryParam("async") boolean async
     );
 
@@ -149,7 +149,7 @@ public interface DocumentsService {
     Response updateCreditNote(
             @PathParam("organizationName") String organizationName,
             @PathParam("id") String id,
-            DocumentRepresentation creditNote,
+            DocumentRequestRepresentation creditNote,
             @QueryParam("async") boolean async
     );
 
@@ -172,7 +172,7 @@ public interface DocumentsService {
     @Produces(MediaType.APPLICATION_JSON)
     Response createDebitNote(
             @PathParam("organizationName") String organizationName,
-            DocumentRepresentation debitNote,
+            DocumentRequestRepresentation debitNote,
             @QueryParam("async") boolean async
     );
 
@@ -191,7 +191,7 @@ public interface DocumentsService {
     Response updateDebitNote(
             @PathParam("organizationName") String organizationName,
             @PathParam("id") String id,
-            DocumentRepresentation debitNote,
+            DocumentRequestRepresentation debitNote,
             @QueryParam("async") boolean async
     );
 

@@ -19,9 +19,9 @@ public class OrganizationClient {
         return documentsService.getDocumentById(organization, id);
     }
 
-    public DocumentRepresentation getDocumentByIdAsEntity(String id) {
-        Response response = documentsService.getDocumentById(organization, id);
-        DocumentRepresentation rep = response.readEntity(DocumentRepresentation.class);
+    public DocumentResponseRepresentation getDocumentByIdAsEntity(String id) {
+        Response response = getDocumentById(id);
+        DocumentResponseRepresentation rep = response.readEntity(DocumentResponseRepresentation.class);
         response.close();
         return rep;
     }
@@ -54,7 +54,7 @@ public class OrganizationClient {
         return documentsService.checkTicket(organization, id);
     }
 
-    public Response createInvoice(DocumentRepresentation invoice, boolean async) {
+    public Response createInvoice(DocumentRequestRepresentation invoice, boolean async) {
         return documentsService.createInvoice(organization, invoice, async);
     }
 
@@ -62,7 +62,14 @@ public class OrganizationClient {
         return documentsService.createInvoiceFromString(organization, invoice, async);
     }
 
-    public Response updateInvoice(String id, DocumentRepresentation invoice, boolean async) {
+    public DocumentResponseRepresentation createInvoiceAndParseAsEntity(DocumentRequestRepresentation invoice, boolean async) {
+        Response response = createInvoice(invoice, async);
+        DocumentResponseRepresentation rep = response.readEntity(DocumentResponseRepresentation.class);
+        response.close();
+        return rep;
+    }
+
+    public Response updateInvoice(String id, DocumentRequestRepresentation invoice, boolean async) {
         return documentsService.updateInvoice(organization, id, invoice, async);
     }
 
@@ -70,7 +77,7 @@ public class OrganizationClient {
         return documentsService.updateInvoiceFromString(organization, id, invoice, async);
     }
 
-    public Response createCreditNote(DocumentRepresentation creditNote, boolean async) {
+    public Response createCreditNote(DocumentRequestRepresentation creditNote, boolean async) {
         return documentsService.createCreditNote(organization, creditNote, async);
     }
 
@@ -78,7 +85,14 @@ public class OrganizationClient {
         return documentsService.createCreditNoteFromString(organization, creditNote, async);
     }
 
-    public Response updateCreditNote(String id, DocumentRepresentation creditNote, boolean async) {
+    public DocumentResponseRepresentation createCreditNoteAndParseAsEntity(DocumentRequestRepresentation creditNote, boolean async) {
+        Response response = createCreditNote(creditNote, async);
+        DocumentResponseRepresentation rep = response.readEntity(DocumentResponseRepresentation.class);
+        response.close();
+        return rep;
+    }
+
+    public Response updateCreditNote(String id, DocumentRequestRepresentation creditNote, boolean async) {
         return documentsService.updateCreditNote(organization, id, creditNote, async);
     }
 
@@ -86,7 +100,7 @@ public class OrganizationClient {
         return documentsService.updateCreditNoteFromString(organization, id, creditNote, async);
     }
 
-    public Response createDebitNote(DocumentRepresentation debitNote, boolean async) {
+    public Response createDebitNote(DocumentRequestRepresentation debitNote, boolean async) {
         return documentsService.createDebitNote(organization, debitNote, async);
     }
 
@@ -94,7 +108,14 @@ public class OrganizationClient {
         return documentsService.createDebitNoteFromString(organization, debitNote, async);
     }
 
-    public Response updateDebitNote(String id, DocumentRepresentation debitNote, boolean async) {
+    public DocumentResponseRepresentation createDebitNoteAndParseAsEntity(DocumentRequestRepresentation debitNote, boolean async) {
+        Response response = createDebitNote(debitNote, async);
+        DocumentResponseRepresentation rep = response.readEntity(DocumentResponseRepresentation.class);
+        response.close();
+        return rep;
+    }
+
+    public Response updateDebitNote(String id, DocumentRequestRepresentation debitNote, boolean async) {
         return documentsService.updateDebitNote(organization, id, debitNote, async);
     }
 
@@ -108,6 +129,13 @@ public class OrganizationClient {
 
     public Response createPerceptionFromString(String perception, boolean async) {
         return documentsService.createPerceptionFromString(organization, perception, async);
+    }
+
+    public DocumentResponseRepresentation createPerceptionAndParseAsEntity(DocumentoSunatRepresentation perception, boolean async) {
+        Response response = createPerception(perception, async);
+        DocumentResponseRepresentation rep = response.readEntity(DocumentResponseRepresentation.class);
+        response.close();
+        return rep;
     }
 
     public Response updatePerception(String id, DocumentoSunatRepresentation perception, boolean async) {
@@ -126,6 +154,13 @@ public class OrganizationClient {
         return documentsService.createRetentionFromString(organization, retention, async);
     }
 
+    public DocumentResponseRepresentation createRetentionAndParseAsEntity(DocumentoSunatRepresentation perception, boolean async) {
+        Response response = createRetention(perception, async);
+        DocumentResponseRepresentation rep = response.readEntity(DocumentResponseRepresentation.class);
+        response.close();
+        return rep;
+    }
+
     public Response updateRetention(String id, DocumentoSunatRepresentation retention, boolean async) {
         return documentsService.updateRetention(organization, id, retention, async);
     }
@@ -136,6 +171,13 @@ public class OrganizationClient {
 
     public Response createVoidedDocument(VoidedRepresentation voidedDocument, boolean async) {
         return documentsService.createVoidedDocument(organization, voidedDocument, async);
+    }
+
+    public DocumentResponseRepresentation createVoidedDocumentAndParseAsEntity(VoidedRepresentation voidedDocument, boolean async) {
+        Response response = createVoidedDocument(voidedDocument, async);
+        DocumentResponseRepresentation rep = response.readEntity(DocumentResponseRepresentation.class);
+        response.close();
+        return rep;
     }
 
     public Response createVoidedDocumentFromString(String voidedDocument, boolean async) {

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class DocumentRepresentation {
+public class DocumentResponseRepresentation {
 
     private String id;
     private String documentId;
@@ -18,15 +18,19 @@ public class DocumentRepresentation {
     private String customerAssignedAccountId;
     private String customerElectronicMail;
 
-    private boolean enabled;
+    private String status;
+    private Integer statusCode;
+    private String statusMessage;
+
+    private boolean bajaEnProceso;
     private boolean closed;
     private boolean summaryVoided;
 
     private Map<String, List<String>> attributes;
     private Set<String> requiredActions;
 
-    private List<DocumentRepresentation> attachedDocumentsAsOrigin;
-    private List<DocumentRepresentation> attachedDocumentsAsDestiny;
+    private List<DocumentResponseRepresentation> attachedDocumentsAsOrigin;
+    private List<DocumentResponseRepresentation> attachedDocumentsAsDestiny;
 
     private List<Map<String, String>> documentLines;
 
@@ -81,14 +85,6 @@ public class DocumentRepresentation {
         this.customerElectronicMail = customerElectronicMail;
     }
 
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public Map<String, List<String>> getAttributes() {
         return attributes;
     }
@@ -105,11 +101,11 @@ public class DocumentRepresentation {
         this.requiredActions = requiredActions;
     }
 
-    public List<DocumentRepresentation> getAttachedDocumentsAsOrigin() {
+    public List<DocumentResponseRepresentation> getAttachedDocumentsAsOrigin() {
         return attachedDocumentsAsOrigin;
     }
 
-    public void setAttachedDocumentsAsOrigin(List<DocumentRepresentation> attachedDocumentsAsOrigin) {
+    public void setAttachedDocumentsAsOrigin(List<DocumentResponseRepresentation> attachedDocumentsAsOrigin) {
         this.attachedDocumentsAsOrigin = attachedDocumentsAsOrigin;
     }
 
@@ -129,11 +125,11 @@ public class DocumentRepresentation {
         this.documentType = documentType;
     }
 
-    public List<DocumentRepresentation> getAttachedDocumentsAsDestiny() {
+    public List<DocumentResponseRepresentation> getAttachedDocumentsAsDestiny() {
         return attachedDocumentsAsDestiny;
     }
 
-    public void setAttachedDocumentsAsDestiny(List<DocumentRepresentation> attachedDocumentsAsDestiny) {
+    public void setAttachedDocumentsAsDestiny(List<DocumentResponseRepresentation> attachedDocumentsAsDestiny) {
         this.attachedDocumentsAsDestiny = attachedDocumentsAsDestiny;
     }
 
@@ -183,6 +179,38 @@ public class DocumentRepresentation {
 
     public void setPdfBase64(String pdfBase64) {
         this.pdfBase64 = pdfBase64;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(Integer statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public String getStatusMessage() {
+        return statusMessage;
+    }
+
+    public void setStatusMessage(String statusMessage) {
+        this.statusMessage = statusMessage;
+    }
+
+    public boolean isBajaEnProceso() {
+        return bajaEnProceso;
+    }
+
+    public void setBajaEnProceso(boolean bajaEnProceso) {
+        this.bajaEnProceso = bajaEnProceso;
     }
 
 }
