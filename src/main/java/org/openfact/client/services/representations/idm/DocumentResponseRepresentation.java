@@ -37,6 +37,8 @@ public class DocumentResponseRepresentation {
     private String xmlBase64;
     private String pdfBase64;
 
+    private String observaciones;
+
     public String getId() {
         return id;
     }
@@ -213,4 +215,11 @@ public class DocumentResponseRepresentation {
         this.bajaEnProceso = bajaEnProceso;
     }
 
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
 }
