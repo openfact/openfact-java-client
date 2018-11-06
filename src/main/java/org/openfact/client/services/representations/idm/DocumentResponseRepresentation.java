@@ -37,6 +37,8 @@ public class DocumentResponseRepresentation {
     private String xmlBase64;
     private String pdfBase64;
 
+    private String xmlDigestValue;
+
     private String observaciones;
 
     public String getId() {
@@ -221,5 +223,13 @@ public class DocumentResponseRepresentation {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    public String getXmlDigestValue() {
+        return xmlDigestValue;
+    }
+
+    public void setXmlDigestValue(String xmlDigestValue) {
+        this.xmlDigestValue = xmlDigestValue;
     }
 }
