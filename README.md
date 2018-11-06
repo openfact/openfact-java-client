@@ -1,24 +1,4 @@
-# swagger-java-client
-
-## Requirements
-
-Building the API client library requires [Maven](https://maven.apache.org/) to be installed.
-
-## Installation
-
-To install the API client library to your local Maven repository, simply execute:
-
-```shell
-mvn install
-```
-
-To deploy it to a remote Maven repository instead, configure the settings of the repository and execute:
-
-```shell
-mvn deploy
-```
-
-Refer to the [official documentation](https://maven.apache.org/plugins/maven-deploy-plugin/usage.html) for more information.
+# openfact-java-client
 
 ### Maven users
 
@@ -26,10 +6,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-    <groupId>io.swagger</groupId>
-    <artifactId>swagger-java-client</artifactId>
-    <version>1.0.0</version>
-    <scope>compile</scope>
+    <groupId>org.sistcoop</groupId>
+    <artifactId>openfact-java-client</artifactId>
+    <version>${version}</version>
 </dependency>
 ```
 
@@ -38,56 +17,86 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "io.swagger:swagger-java-client:1.0.0"
+compile "org.sistcoop:openfact-java-client:${version}"
 ```
-
-### Others
-
-At first generate the JAR by executing:
-
-    mvn package
-
-Then manually install the following JARs:
-
-* target/swagger-java-client-1.0.0.jar
-* target/lib/*.jar
 
 ## Getting Started
 
-Please follow the [installation](#installation) instruction and execute the following Java code:
+Please add the needed dependencies and execute the following Java code:
 
 ```java
-
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.ComprobantesApi;
-
-import java.io.File;
-import java.util.*;
 
 public class ComprobantesApiExample {
 
     public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
-        // Configure API key authorization: keycloak
-        ApiKeyAuth keycloak = (ApiKeyAuth) defaultClient.getAuthentication("keycloak");
-        keycloak.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //keycloak.setApiKeyPrefix("Token");
+        String openfactUrl = "http://openfacturl";
+        String tokenServerUrl = "http://securityserverutl";
+        String refreshToken = "mirefreshtoken";
 
-        ComprobantesApi apiInstance = new ComprobantesApi();
-        String organization = "organization_example"; // String | Nombre de la organización
-        CreditNote body = new CreditNote(); // CreditNote | Cuerpo del comprobante
-        Boolean async = true; // Boolean | Tipo de operación
-        try {
-            DocumentResponseRepresentation result = apiInstance.createCreditNote(organization, body, async);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ComprobantesApi#createCreditNote");
-            e.printStackTrace();
-        }
+        TokenManager tokenManager = OpenfactClientFactory.getTokenManager("openfact-web-console", tokenServerUrl, refreshToken);
+        DocumentsService service = OpenfactClientFactory.getDocumentsService(openfactUrl, tokenManager);
+        OrganizationClient client = new OrganizationClient("miempresa", service);
+
+        DocumentResponseRepresentation invoice = client.createInvoiceAndParseAsEntity(getInvoice(), true);
+        System.out.println("Document created:" + invoice.getDocumentId());
+    }
+    
+    public static DocumentRequestRepresentation getInvoice() {
+        DocumentRequestRepresentation invoice = new DocumentRequestRepresentation();
+
+        invoice.setFechaDeEmision(new Date());
+
+        invoice.setTipo("01"); // Tipo de Documento (Boleta/factura)
+        invoice.setEntidadDenominacion("Juan Perez"); // Nombre del cliente
+        invoice.setEntidadEmail("micorreo@gmail.com"); // Email del cliente
+        invoice.setEntidadNumeroDeDocumento("10254125878"); // Numero de documento del cliente (RUC/DNI)
+        invoice.setEntidadTipoDeDocumento("6"); // Tipo de Documento del cliente (RUC/DNI)
+        invoice.setEnviarAutomaticamenteASunat(true);
+        invoice.setEnviarAutomaticamenteAlCliente(true);
+        invoice.setIgv(new BigDecimal(18)); // IGV Aplicado a la operacion expresada en porcentaje 18%
+        invoice.setMoneda("PEN"); // Moneda nacional
+        invoice.setObservaciones("Mis observaciones");
+
+        invoice.setOperacionGratuita(false); // Si la operacion es gratuita
+        invoice.setTotalGratuita(BigDecimal.ZERO);
+
+        invoice.setTotalGravada(new BigDecimal(120_100));
+        invoice.setTotalExonerada(BigDecimal.ZERO);
+        invoice.setTotalInafecta(BigDecimal.ZERO);
+
+        invoice.setTotal(new BigDecimal(141_718));
+        invoice.setTotalIgv(new BigDecimal(21_618));
+        invoice.setTotalOtrosCargos(BigDecimal.ZERO); // Otros cargos aplicados
+        invoice.setDescuentoGlobal(BigDecimal.ZERO); // Descuentos aplicados
+
+        // Detalle de la factura
+        List<LineRepresentation> lines = new ArrayList<>();
+        LineRepresentation line1 = new LineRepresentation();
+        LineRepresentation line2 = new LineRepresentation();
+        lines.add(line1);
+        lines.add(line2);
+
+        line1.setCantidad(new BigDecimal(2));
+        line1.setDescripcion("Carro Toyota ultimo modelo");
+        line1.setTipoDeIgv("10"); // Codigo de operacion (Gravado - Operacion Onerosa)
+        line1.setValorUnitario(new BigDecimal(60_000)); // Precio unitario sin igv
+        line1.setIgv(new BigDecimal(21_600)); // Igv aplicado al item
+        line1.setPrecioUnitario(new BigDecimal(70_800)); // Precio unitario con igv
+        line1.setSubtotal(new BigDecimal(120_000)); // Subtotal sin igv
+        line1.setTotal(new BigDecimal(141_600)); // Subtotal con igv
+
+        line2.setCantidad(new BigDecimal(1));
+        line2.setDescripcion("Llanta doble filo original");
+        line2.setTipoDeIgv("10"); // Codigo de operacion (Gravado - Operacion Onerosa)
+        line2.setValorUnitario(new BigDecimal(100)); // Precio unitario sin igv
+        line2.setIgv(new BigDecimal(18)); // Igv aplicado al item
+        line2.setPrecioUnitario(new BigDecimal(118)); // Precio unitario con igv
+        line2.setSubtotal(new BigDecimal(100)); // Subtotal sin igv
+        line2.setTotal(new BigDecimal(118)); // Subtotal con igv
+
+        // Return result
+        invoice.setDetalle(lines);
+        return invoice;
     }
 }
 
@@ -95,7 +104,7 @@ public class ComprobantesApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://openfactv2-openfact-development.apps.console.sistcoop.org:83/api*
+All URIs are relative to *https://localhost:8080/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -137,9 +146,7 @@ Authentication schemes defined for the API:
 
 ## Recommendation
 
-It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issues.
-
-## Author
+It's recommended to create an instance of `OrganizationClient` per thread in a multithreaded environment to avoid any potential issues.
 
 
 
