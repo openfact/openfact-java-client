@@ -4,6 +4,7 @@ import org.openfact.client.services.DocumentsService;
 import org.openfact.client.services.representations.idm.*;
 
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 public class OrganizationClient {
 
@@ -22,6 +23,17 @@ public class OrganizationClient {
     public DocumentResponseRepresentation getDocumentByIdAsEntity(String id) {
         Response response = getDocumentById(id);
         DocumentResponseRepresentation rep = response.readEntity(DocumentResponseRepresentation.class);
+        response.close();
+        return rep;
+    }
+
+    public Response getDocuments(String documentType, String serieNumero) {
+        return documentsService.getDocuments(organization, documentType, serieNumero);
+    }
+
+    public SearchResultsRepresentation<DocumentResponseRepresentation> getDocumentsAsEntity(String documentType, String serieNumero) {
+        Response response = getDocuments(documentType, serieNumero);
+        SearchResultsRepresentation<DocumentResponseRepresentation> rep = response.readEntity(SearchResultsRepresentation.class);
         response.close();
         return rep;
     }

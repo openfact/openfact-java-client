@@ -5,10 +5,19 @@ import org.openfact.client.services.representations.idm.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/admin/organizations")
 @Consumes(MediaType.APPLICATION_JSON)
 public interface DocumentsService {
+
+    @GET
+    @Path("/{organizationName}/documents")
+    @Produces(MediaType.APPLICATION_JSON)
+    Response getDocuments(
+            @PathParam("organizationName") final String organizationName,
+            @QueryParam("documentType") String documentType,
+            @QueryParam("documentId") String documentId);
 
     @GET
     @Path("/{organizationName}/documents/{id}")
