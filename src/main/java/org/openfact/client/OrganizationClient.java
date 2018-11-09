@@ -4,7 +4,6 @@ import org.openfact.client.services.DocumentsService;
 import org.openfact.client.services.representations.idm.*;
 
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 public class OrganizationClient {
 
