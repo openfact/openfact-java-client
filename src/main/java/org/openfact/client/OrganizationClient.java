@@ -186,7 +186,13 @@ public class OrganizationClient {
 
     public DocumentResponseRepresentation createVoidedDocumentAndParseAsEntity(VoidedRepresentation voidedDocument, boolean async) {
         Response response = createVoidedDocument(voidedDocument, async);
-        DocumentResponseRepresentation rep = response.readEntity(DocumentResponseRepresentation.class);
+        DocumentResponseRepresentation rep = null;
+        if (response.getStatus() == 201) {
+            rep = response.readEntity(DocumentResponseRepresentation.class);
+        } else if (response.getStatus() == 200) {
+            rep = new DocumentResponseRepresentation();
+            rep.setObservaciones("El envio de la baja del comprobante fue programado para su envio");
+        }
         response.close();
         return rep;
     }
