@@ -26,6 +26,20 @@ public class SearchCriteriaRepresentation {
     private List<OrderByRepresentation> orders = new ArrayList<>();
     private PagingRepresentation paging;
 
+    public SearchCriteriaRepresentation() {
+    }
+
+    public SearchCriteriaRepresentation(Builder builder) {
+        this.filterText = builder.filterText;
+        this.filters = builder.filters;
+        this.orders = builder.orders;
+        this.paging = builder.paging;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getFilterText() {
         return filterText;
     }
@@ -58,4 +72,119 @@ public class SearchCriteriaRepresentation {
         this.paging = paging;
     }
 
+    public static class Builder {
+        private String filterText;
+        private List<SearchCriteriaFilterRepresentation> filters = new ArrayList<>();
+        private List<OrderByRepresentation> orders = new ArrayList<>();
+        private PagingRepresentation paging;
+
+        public Builder filterText(String filterText) {
+            this.filterText = filterText;
+            return this;
+        }
+
+        private FilterBuilder addFilter() {
+            return new FilterBuilder(Builder.this);
+        }
+
+        public Builder addFilter_DocumentType(DocumentType value) {
+            return new FilterBuilder(Builder.this)
+                    .name("documentType")
+                    .value(value.toString())
+                    .operator(SearchCriteriaFilterOperatorRepresentation.eq)
+                    .filterEnd();
+        }
+
+        public Builder addFilter_DocumentStatus(DocumentStatus value) {
+            return new FilterBuilder(Builder.this)
+                    .name("status")
+                    .value(value.toString())
+                    .operator(SearchCriteriaFilterOperatorRepresentation.eq)
+                    .filterEnd();
+        }
+
+        public Builder addFilter_DocumentIdStartsWith(String value) {
+            return new FilterBuilder(Builder.this)
+                    .name("documentId")
+                    .value(value + "*")
+                    .operator(SearchCriteriaFilterOperatorRepresentation.eq)
+                    .filterEnd();
+        }
+
+        public OrderByBuilder addOrder() {
+            return new OrderByBuilder(Builder.this);
+        }
+
+        public Builder paging(int page, int pageSize) {
+            paging = new PagingRepresentation();
+            paging.setPage(page);
+            paging.setPageSize(pageSize);
+            return this;
+        }
+
+        public SearchCriteriaRepresentation build() {
+            return new SearchCriteriaRepresentation(this);
+        }
+
+    }
+
+    public static class FilterBuilder {
+        private Builder builder;
+        private SearchCriteriaFilterRepresentation filter;
+
+        public FilterBuilder(Builder builder) {
+            this.builder = builder;
+            filter = new SearchCriteriaFilterRepresentation();
+        }
+
+        public FilterBuilder name(String name) {
+            this.filter.setName(name);
+            return this;
+        }
+
+        public FilterBuilder value(Object value) {
+            this.filter.setValue(value);
+            return this;
+        }
+
+        public FilterBuilder operator(SearchCriteriaFilterOperatorRepresentation operator) {
+            this.filter.setOperator(operator);
+            return this;
+        }
+
+        public FilterBuilder type(SearchCriteriaFilterRepresentation.FilterValueType type) {
+            this.filter.setType(type);
+            return this;
+        }
+
+        public Builder filterEnd() {
+            builder.filters.add(filter);
+            return builder;
+        }
+    }
+
+    public static class OrderByBuilder {
+        private Builder builder;
+        private OrderByRepresentation orderBy;
+
+        public OrderByBuilder(Builder builder) {
+            this.builder = builder;
+            orderBy = new OrderByRepresentation();
+        }
+
+        public OrderByBuilder name(String name) {
+            this.orderBy.setName(name);
+            return this;
+        }
+
+        public OrderByBuilder ascending(boolean ascemding) {
+            this.orderBy.setAscending(ascemding);
+            return this;
+        }
+
+        public Builder oderByEnd() {
+            builder.orders.add(orderBy);
+            return builder;
+        }
+    }
 }

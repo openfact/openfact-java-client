@@ -209,4 +209,14 @@ public class OrganizationClient {
         return documentsService.updateVoidedDocumentFromString(organization, id, voidedDocument, async);
     }
 
+    public Response searchDocuments(SearchCriteriaRepresentation searchCriteria) {
+        return documentsService.search(organization, searchCriteria);
+    }
+
+    public DocumentSearchResultsRepresentation searchDocumentsAsEntity(SearchCriteriaRepresentation searchCriteria) {
+        Response response = searchDocuments(searchCriteria);
+        DocumentSearchResultsRepresentation rep = response.readEntity(DocumentSearchResultsRepresentation.class);;
+        response.close();
+        return rep;
+    }
 }
