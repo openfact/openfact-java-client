@@ -72,29 +72,31 @@ public class ComprobantesApiExample {
         // Detalle de la factura
         List<LineRepresentation> lines = new ArrayList<>();
         LineRepresentation line1 = new LineRepresentation();
-        LineRepresentation line2 = new LineRepresentation();
-        lines.add(line1);
-        lines.add(line2);
+        LineRepresentation line2 = new LineRepresentation();    
 
         line1.setCantidad(new BigDecimal(2));
         line1.setDescripcion("Carro Toyota ultimo modelo");
+        line1.setCodigoProducto("CTUM010"); //Codigo del producto yo servicio
+        line1.setCodigoSunat("52151504"); //Codigo de producto segun la codificacion de la sunat
         line1.setTipoDeIgv("10"); // Codigo de operacion (Gravado - Operacion Onerosa)
         line1.setValorUnitario(new BigDecimal(60_000)); // Precio unitario sin igv
         line1.setIgv(new BigDecimal(21_600)); // Igv aplicado al item
         line1.setPrecioUnitario(new BigDecimal(70_800)); // Precio unitario con igv
         line1.setSubtotal(new BigDecimal(120_000)); // Subtotal sin igv
         line1.setTotal(new BigDecimal(141_600)); // Subtotal con igv
-
+        lines.add(line1);
+        
         line2.setCantidad(new BigDecimal(1));
         line2.setDescripcion("Llanta doble filo original");
+        line1.setCodigoProducto("LDFO025"); //Codigo del producto yo servicio
+        line1.setCodigoSunat("51121703"); //Codigo de producto segun la codificacion de la sunat
         line2.setTipoDeIgv("10"); // Codigo de operacion (Gravado - Operacion Onerosa)
         line2.setValorUnitario(new BigDecimal(100)); // Precio unitario sin igv
         line2.setIgv(new BigDecimal(18)); // Igv aplicado al item
         line2.setPrecioUnitario(new BigDecimal(118)); // Precio unitario con igv
         line2.setSubtotal(new BigDecimal(100)); // Subtotal sin igv
         line2.setTotal(new BigDecimal(118)); // Subtotal con igv
-
-        // Return result
+        lines.add(line2);
         invoice.setDetalle(lines);
         return invoice;
     }

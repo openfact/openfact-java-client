@@ -13,6 +13,8 @@ public class LineRepresentation {
     protected BigDecimal igv;
     protected BigDecimal total;
     protected String descripcion;
+    protected String codigoProducto;
+    protected String codigoSunat;
 
     public String getUnitCode() {
         return unitCode;
@@ -86,4 +88,19 @@ public class LineRepresentation {
         this.descripcion = descripcion;
     }
 
+    public String getCodigoProducto() {
+        return codigoProducto;
+    }
+
+    public void setCodigoProducto(String codigoProducto) {
+        this.codigoProducto = codigoProducto;
+    }
+
+    public String getCodigoSunat() {
+        return codigoSunat;
+    }
+
+    public void setCodigoSunat(String codigoSunat) {
+        this.codigoSunat = codigoSunat;
+    }
 }
