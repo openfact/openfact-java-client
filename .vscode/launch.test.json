@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "openfact-java-client",
+                "projectName": "openfact-java-client",
+                "workingDirectory": "d:\\DESARROLLO\\openfact-client\\openfact-java-client",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "openfact-java-client",
+                "projectName": "openfact-java-client",
+                "workingDirectory": "d:\\DESARROLLO\\openfact-client\\openfact-java-client",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}
