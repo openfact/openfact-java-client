@@ -21,10 +21,12 @@ public class DocumentResponseRepresentation {
     private String status;
     private Integer statusCode;
     private String statusMessage;
+    private String errorMessage;
 
     private boolean bajaEnProceso;
     private boolean closed;
     private boolean summaryVoided;
+    private boolean inSummary;
 
     private Map<String, List<String>> attributes;
     private Set<String> requiredActions;
@@ -231,5 +233,21 @@ public class DocumentResponseRepresentation {
 
     public void setXmlDigestValue(String xmlDigestValue) {
         this.xmlDigestValue = xmlDigestValue;
+    }
+
+    public boolean isInSummary() {
+        return inSummary;
+    }
+
+    public void setInSummary(boolean inSummary) {
+        this.inSummary = inSummary;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }
