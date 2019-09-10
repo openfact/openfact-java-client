@@ -16,6 +16,9 @@ public class LineRepresentation {
     protected String codigoProducto;
     protected String codigoSunat;
 
+    protected BigDecimal valorIcbPer;
+    protected Boolean icbPer;
+
     public String getUnitCode() {
         return unitCode;
     }
@@ -102,5 +105,21 @@ public class LineRepresentation {
 
     public void setCodigoSunat(String codigoSunat) {
         this.codigoSunat = codigoSunat;
+    }
+
+    public BigDecimal getValorIcbPer() {
+        return valorIcbPer;
+    }
+
+    public void setValorIcbPer(BigDecimal valorIcbPer) {
+        this.valorIcbPer = valorIcbPer;
+    }
+
+    public Boolean getIcbPer() {
+        return icbPer;
+    }
+
+    public void setIcbPer(Boolean icbPer) {
+        this.icbPer = icbPer;
     }
 }

@@ -42,6 +42,7 @@ public class DocumentRequestRepresentation {
 
     @NotNull
     protected BigDecimal igv;
+    protected BigDecimal totalIcbPer;
     protected BigDecimal porcentajeDescuento;
 
     protected BigDecimal descuentoGlobal;
@@ -352,5 +353,13 @@ public class DocumentRequestRepresentation {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public BigDecimal getTotalIcbPer() {
+        return totalIcbPer;
+    }
+
+    public void setTotalIcbPer(BigDecimal totalIcbPer) {
+        this.totalIcbPer = totalIcbPer;
     }
 }
