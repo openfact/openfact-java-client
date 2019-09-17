@@ -23,3 +23,5 @@ mvn versions:set -DnewVersion="$nextVersion-SNAPSHOT"
 git add .
 git commit -m "Prepare next release $nextVersion-SNAPSHOT"
 git push "https://$username:$password@github.com/openfact/openfact-java-client.git"
+
+pause
