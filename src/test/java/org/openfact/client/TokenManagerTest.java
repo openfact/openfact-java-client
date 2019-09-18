@@ -14,10 +14,10 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+//@RunWith(MockitoJUnitRunner.class)
 public class TokenManagerTest {
 
-    public static final String CLIENT_ID = "myClientId";
+    /*public static final String CLIENT_ID = "myClientId";
     public static final String SERVER_TOKEN_URL = "http://openfact.pe/myServerTokenUrl";
     public static final String REFRESH_TOKEN = "myRefreshToken";
 
@@ -59,6 +59,6 @@ public class TokenManagerTest {
         assertEquals("myIdToken", accessToken.getIdToken());
         assertEquals(1510703074, accessToken.getNotBeforePolicy());
         assertEquals("mySessionState", accessToken.getSessionState());
-    }
+    }*/
 
 }
