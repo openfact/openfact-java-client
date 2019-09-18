@@ -7,7 +7,7 @@ import org.openfact.client.services.DocumentsService;
 
 public class OpenfactClientFactoryTest {
 
-   /* @Test
+    @Test
     public void test_shouldCreateTokenManager() {
         TokenManager tokenManager = OpenfactClientFactory.getTokenManager("myClientId", "myTokenUrl", "myOfflineToken");
         Assert.assertNotNull(tokenManager);
@@ -18,6 +18,6 @@ public class OpenfactClientFactoryTest {
         TokenManager tokenManager = OpenfactClientFactory.getTokenManager("myClientId", "http://myServerTokenUrl", "myRefreshToken");
         DocumentsService service = OpenfactClientFactory.getDocumentsService("http://myOpenfactServerUrl", tokenManager);
         Assert.assertNotNull(service);
-    }*/
+    }
 
 }
