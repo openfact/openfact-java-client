@@ -16,6 +16,7 @@ public class LineRepresentation {
     protected String codigoProducto;
     protected String codigoSunat;
 
+    protected BigDecimal descuento;
     protected BigDecimal valorIcbPer;
     protected Boolean icbPer;
 
@@ -121,5 +122,13 @@ public class LineRepresentation {
 
     public void setIcbPer(Boolean icbPer) {
         this.icbPer = icbPer;
+    }
+
+    public BigDecimal getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(BigDecimal descuento) {
+        this.descuento = descuento;
     }
 }
