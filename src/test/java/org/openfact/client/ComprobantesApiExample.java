@@ -47,31 +47,33 @@ public class ComprobantesApiExample {
         invoice.setOperacionGratuita(false); // Si la operacion es gratuita
         invoice.setTotalGratuita(BigDecimal.ZERO);
 
-        invoice.setTotalGravada(new BigDecimal(848.31));
+        invoice.setTotalGravada(new BigDecimal(317.58));
         invoice.setTotalExonerada(BigDecimal.ZERO);
         invoice.setTotalInafecta(BigDecimal.ZERO);
 
-        invoice.setTotal(new BigDecimal(1001.1));
-        invoice.setTotalIgv(new BigDecimal(152.69));
-        invoice.setTotalIcbPer(new BigDecimal(0.1));
+        invoice.setTotal(new BigDecimal(374.74));
+        invoice.setTotalIgv(new BigDecimal(57.16));
+        invoice.setTotalIcbPer(new BigDecimal(0));
         invoice.setTotalOtrosCargos(BigDecimal.ZERO); // Otros cargos aplicados
-        invoice.setDescuentoGlobal(BigDecimal.ZERO); // Descuentos aplicados
+        invoice.setDescuentoGlobal(new BigDecimal(21.92)); // Descuentos aplicados
 
         // Detalle de la factura
         List<LineRepresentation> lines = new ArrayList<>();
         LineRepresentation line1 = new LineRepresentation();
         LineRepresentation line2 = new LineRepresentation();
 
-        line1.setCantidad(new BigDecimal(10));
+        line1.setCantidad(new BigDecimal(6));
         line1.setDescripcion("Carro Toyota ultimo modelo");
         line1.setCodigoProducto("CTUM010"); //Codigo del producto yo servicio
         //line1.setCodigoSunat("52151504"); //Codigo de producto segun la codificacion de la sunat
         line1.setTipoDeIgv("10"); // Codigo de operacion (Gravado - Operacion Onerosa)
-        line1.setValorUnitario(new BigDecimal(84.75)); // Precio unitario sin igv
-        line1.setIgv(new BigDecimal(152.54)); // Igv aplicado al item
-        line1.setPrecioUnitario(new BigDecimal(100)); // Precio unitario con igv
-        line1.setSubtotal(new BigDecimal(847.46)); // Subtotal sin igv
-        line1.setTotal(new BigDecimal(1000)); // Subtotal con igv
+        line1.setValorUnitario(new BigDecimal(36.53)); // Precio unitario sin igv
+        line1.setIgv(new BigDecimal(35.50)); // Igv aplicado al item
+        line1.setPrecioUnitario(new BigDecimal(43.1)); // Precio unitario con igv
+        line1.setSubtotal(new BigDecimal(197.24)); // Subtotal sin igv
+        line1.setTotal(new BigDecimal(258.6)); // Subtotal con igv
+        //campo para el descuento
+        line1.setDescuento(new BigDecimal(21.92));
         //inicio de nuevos campos
         line1.setIcbPer(false); // activar en true para especificar que el item tiene el impuesto a la bolsa
         line1.setValorIcbPer(new BigDecimal(0)); // valor del icbper (impuesto a la bolsa).
@@ -83,14 +85,17 @@ public class ComprobantesApiExample {
         line1.setCodigoProducto("LDFO025"); //Codigo del producto yo servicio
         line1.setCodigoSunat("51121703"); //Codigo de producto segun la codificacion de la sunat
         line2.setTipoDeIgv("10"); // Codigo de operacion (Gravado - Operacion Onerosa)
-        line2.setValorUnitario(new BigDecimal(0.85)); // Precio unitario sin igv
-        line2.setIgv(new BigDecimal(0.15)); // Igv aplicado al item
-        line2.setPrecioUnitario(new BigDecimal(1)); // Precio unitario con igv
-        line2.setSubtotal(new BigDecimal(0.85)); // Subtotal sin igv
-        line2.setTotal(new BigDecimal(1)); // Subtotal con igv
+        line2.setValorUnitario(new BigDecimal(120.34)); // Precio unitario sin igv
+        line2.setIgv(new BigDecimal(21.66)); // Igv aplicado al item
+        line2.setPrecioUnitario(new BigDecimal(142)); // Precio unitario con igv
+        line2.setSubtotal(new BigDecimal(120.34)); // Subtotal sin igv
+        line2.setTotal(new BigDecimal(142)); // Subtotal con igv
+        //campo para el descuento
+        line1.setDescuento(new BigDecimal(0));
         //inicio de nuevos campos
-        line2.setIcbPer(true); // activar en true para especificar que el item tiene el impuesto a la bolsa
-        line2.setValorIcbPer(new BigDecimal(0.1)); // valor del icbper (impuesto a la bolsa).
+        line2.setIcbPer(false); // activar en true para especificar que el item tiene el impuesto a la bolsa
+        //line2.setValorIcbPer(new BigDecimal(0.1)); // valor del icbper (impuesto a la bolsa).line2.setIcbPer(true); // activar en true para especificar que el item tiene el impuesto a la bolsa
+        line2.setValorIcbPer(new BigDecimal(0)); // valor del icbper (impuesto a la bolsa).
         //fin de nuevos campos
         lines.add(line2);
         invoice.setDetalle(lines);

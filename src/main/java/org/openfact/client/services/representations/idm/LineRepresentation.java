@@ -9,6 +9,7 @@ public class LineRepresentation {
     protected String tipoDeIgv;
     protected BigDecimal valorUnitario;
     protected BigDecimal precioUnitario;
+    protected BigDecimal descuento;
     protected BigDecimal subtotal;
     protected BigDecimal igv;
     protected BigDecimal total;
@@ -121,5 +122,13 @@ public class LineRepresentation {
 
     public void setIcbPer(Boolean icbPer) {
         this.icbPer = icbPer;
+    }
+
+    public BigDecimal getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(BigDecimal descuento) {
+        this.descuento = descuento;
     }
 }
