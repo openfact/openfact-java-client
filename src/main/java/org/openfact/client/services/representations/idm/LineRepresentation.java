@@ -17,6 +17,7 @@ public class LineRepresentation {
     protected String codigoProducto;
     protected String codigoSunat;
 
+    protected BigDecimal descuento;
     protected BigDecimal valorIcbPer;
     protected Boolean icbPer;
 
