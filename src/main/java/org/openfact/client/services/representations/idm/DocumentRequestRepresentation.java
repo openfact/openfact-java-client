@@ -67,6 +67,10 @@ public class DocumentRequestRepresentation {
     private List<LineRepresentation> detalle;
     private SunatDespatchAdviceRepresentation despatchAdvice;
 
+    protected DetractionRepresentation detraction;
+    protected boolean credito;
+    private List<PaymentTermsRepresentation> paymentTerms;
+
     public String getTipo() {
         return tipo;
     }
@@ -361,5 +365,29 @@ public class DocumentRequestRepresentation {
 
     public void setTotalIcbPer(BigDecimal totalIcbPer) {
         this.totalIcbPer = totalIcbPer;
+    }
+
+    public DetractionRepresentation getDetraction() {
+        return detraction;
+    }
+
+    public void setDetraction(DetractionRepresentation detraction) {
+        this.detraction = detraction;
+    }
+
+    public boolean isCredito() {
+        return credito;
+    }
+
+    public void setCredito(boolean credito) {
+        this.credito = credito;
+    }
+
+    public List<PaymentTermsRepresentation> getPaymentTerms() {
+        return paymentTerms;
+    }
+
+    public void setPaymentTerms(List<PaymentTermsRepresentation> paymentTerms) {
+        this.paymentTerms = paymentTerms;
     }
 }
