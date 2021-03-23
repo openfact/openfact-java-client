@@ -128,7 +128,7 @@ public class LineRepresentation {
         return descuento;
     }
 
-    public void setDescuento(BigDecimal descuento) {
-        this.descuento = descuento;
+    public void setDescuento(BigDecimal descuentos) {
+        this.descuento = descuentos;
     }
 }

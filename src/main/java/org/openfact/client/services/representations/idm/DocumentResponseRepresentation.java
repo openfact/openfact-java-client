@@ -33,6 +33,7 @@ public class DocumentResponseRepresentation {
 
     private List<DocumentResponseRepresentation> attachedDocumentsAsOrigin;
     private List<DocumentResponseRepresentation> attachedDocumentsAsDestiny;
+    private List<Map<String, String>> paymentTerms;
 
     private List<Map<String, String>> documentLines;
 
@@ -249,5 +250,13 @@ public class DocumentResponseRepresentation {
 
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
+    }
+
+    public List<Map<String, String>> getPaymentTerms() {
+        return paymentTerms;
+    }
+
+    public void setPaymentTerms(List<Map<String, String>> paymentTerms) {
+        this.paymentTerms = paymentTerms;
     }
 }

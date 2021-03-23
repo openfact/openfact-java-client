@@ -12,7 +12,8 @@ import org.openfact.client.services.representations.idm.*;
 public class ComprobantesApiExample {
 
     public static void main(String[] args) {
-        String openfactUrl = "http://localhost:8080/api";// "https://openfactv2-openfact.b9ad.pro-us-east-1.openshiftapps.com/api";//"http://openfactv2-openfact-development.apps.console.sistcoop.org:83/api";
+        //String openfactUrl = "http://localhost:8080/api";// "https://openfactv2-openfact.b9ad.pro-us-east-1.openshiftapps.com/api";//"http://openfactv2-openfact-development.apps.console.sistcoop.org:83/api";
+        String openfactUrl = "https://openfactv2-openfact.b9ad.pro-us-east-1.openshiftapps.com/api";//"http://openfactv2-openfact-development.apps.console.sistcoop.org:83/api";
         String tokenServerUrl = "https://sso-sso.b9ad.pro-us-east-1.openshiftapps.com/auth/realms/innpath/protocol/openid-connect/token";//"http://keycloak-keycloak-sso-development.apps.console.sistcoop.org:83/auth/realms/ahren";
         String refreshToken = "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjR1lKa0l3a3FMR1VJbkNzNzBhVFJndS1ua2dCZndOem9OQmVoeFZyNVpvIn0.eyJqdGkiOiI1ZTcyZjBmMC1jZTNjLTQxNmEtYWZlYi1hODdhMmFhMjMwYjEiLCJleHAiOjAsIm5iZiI6MCwiaWF0IjoxNTk0MTcyMjkzLCJpc3MiOiJodHRwczovL3Nzby1zc28uYjlhZC5wcm8tdXMtZWFzdC0xLm9wZW5zaGlmdGFwcHMuY29tL2F1dGgvcmVhbG1zL2lubnBhdGgiLCJhdWQiOiJvcGVuZmFjdC13ZWItY29uc29sZSIsInN1YiI6Ijc5NjUyMWE5LWY5YTEtNGQxNy1hNTYzLWY1YzM3YTczMDUwNyIsInR5cCI6Ik9mZmxpbmUiLCJhenAiOiJvcGVuZmFjdC13ZWItY29uc29sZSIsIm5vbmNlIjoiMjFjODJjZmEtMjFhOS00MDZjLTljOTMtYTMwYzYyMDA0MmFmIiwiYXV0aF90aW1lIjowLCJzZXNzaW9uX3N0YXRlIjoiYmQwODc3MjUtYTMyYS00ZDU5LThkNjQtN2E0YTRhMjhkY2MzIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9yZ2FuaXphdGlvbi1tYW5hZ2VyIiwib2ZmbGluZV9hY2Nlc3MiLCJhZG1pbiIsIm9yZ2FuaXphdGlvbi11c2VyIiwidW1hX2F1dGhvcml6YXRpb24iLCJvcmdhbml6YXRpb24tYWNjb3VudGFudCJdfSwicmVzb3VyY2VfYWNjZXNzIjp7Im9wZW5mYWN0Ijp7InJvbGVzIjpbIm1hbmFnZS1ldmVudHMiLCJtYW5hZ2Utb3JnYW5pemF0aW9uIiwidmlldy1ldmVudHMiLCJ2aWV3LWRvY3VtZW50cyIsImNyZWF0ZS1vcmdhbml6YXRpb24iLCJtYW5hZ2UtZG9jdW1lbnRzIiwidmlldy1vcmdhbml6YXRpb24iXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwgb2ZmbGluZV9hY2Nlc3MifQ.ItzIri3ANdUzyyNHIN6CKmwLfIpLQMheVxOpAFG9cTwj65u4nkTjjbPosSSeOaR32eWO82esJpwIc_qI2qxgirr71VQiSyANwu3NleZchHtYmBmdRe1PXSma5g9A6q1NlnWdO8ZzYLmNSyWBEOJwAMhikpSTQV_txgsApAEeUz2VlZwmHoaz-OSeWzKChK1LbC9eeiIhS4cCpOXqE4BxjeI5xVPW_vU9Ps1UY2350eq4mw_lVNY292KrrGMz8BHupGV-moBNuAjL2zB1JH2WUrvgHfsfGsFOPui7O6XD-hH9CXdfquyGzmY3TQM9hz8upRbr64dKy_oykkFgyEid-g";
         //"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJGSjg2R2NGM2pUYk5MT2NvNE52WmtVQ0lVbWZZQ3FvcXRPUWVNZmJoTmxFIn0.eyJqdGkiOiI3NzJmZDM1ZS00ZGNjLTRiYTItYWIwOS05M2JhMTdjZmYxM2IiLCJleHAiOjAsIm5iZiI6MCwiaWF0IjoxNTMzNzcwMzAwLCJpc3MiOiJodHRwOi8va2V5Y2xvYWsta2V5Y2xvYWstc3NvLWRldmVsb3BtZW50LmFwcHMuY29uc29sZS5zaXN0Y29vcC5vcmc6ODMvYXV0aC9yZWFsbXMvYWhyZW4iLCJhdWQiOiJvcGVuZmFjdC13ZWItY29uc29sZSIsInN1YiI6IjY5YTU1MjU2LTA5YzMtNGI0Yy04MjNlLTUzMGMzYjJiZmE5OSIsInR5cCI6Ik9mZmxpbmUiLCJhenAiOiJvcGVuZmFjdC13ZWItY29uc29sZSIsIm5vbmNlIjoiZWY2NmVlZjctOTU2YS00MTA2LTg5OTItYjdiNGQyNGZiNjEzIiwiYXV0aF90aW1lIjowLCJzZXNzaW9uX3N0YXRlIjoiYTE2MGUyZGItY2RkMi00YzE1LTlmMmItYWJmZjY5OWZjMDUwIiwiY2xpZW50X3Nlc3Npb24iOiI2Y2IzOTlhYS1jNDU4LTQ4YzUtYjQzZi0zYmQ4Njk5YjMxZDUiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib3JnYW5pemF0aW9uLW1hbmFnZXIiLCJvZmZsaW5lX2FjY2VzcyIsImFkbWluIiwib3JnYW5pemF0aW9uLXVzZXIiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7Im9wZW5mYWN0Ijp7InJvbGVzIjpbIm1hbmFnZS1ldmVudHMiLCJtYW5hZ2Utb3JnYW5pemF0aW9uIiwidmlldy1ldmVudHMiLCJ2aWV3LWRvY3VtZW50cyIsImNyZWF0ZS1vcmdhbml6YXRpb24iLCJtYW5hZ2UtZG9jdW1lbnRzIiwidmlldy1vcmdhbml6YXRpb24iXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX19.MwUj9a6cuf3aMSFLYRvUgpOFNKFjlG2zftyPA0ERhkWHkFAdCmMe_1_DfvAYuff9zLLBYJIFiVPTob7Hcpl-bOqtCvSHV9vbGZPhBwd7h469tkdRu0vP3_6e3C2XM63_StymaCHUjLUss0bHUiQbvYyNmQSbOIKPUH5EvVZzBec";
@@ -24,6 +25,14 @@ public class ComprobantesApiExample {
 
         DocumentResponseRepresentation invoice = client.createInvoiceAndParseAsEntity(getInvoice(), true);
         System.out.println("Document created:" + invoice.getDocumentId());
+
+        DocumentResponseRepresentation buildRequestVoided = null;
+        buildRequestVoided = client.getDocumentByIdAsEntity(invoice.getId());
+        System.out.println("Document status:" + buildRequestVoided.getStatus() + "- "+ new Date());
+        while (buildRequestVoided.getStatus()==null){
+            buildRequestVoided = client.getDocumentByIdAsEntity(invoice.getId());
+            System.out.println("Document re-status:" + buildRequestVoided.getStatus() + " "+new Date());
+        }
     }
 
     public static DocumentRequestRepresentation getInvoice() {

@@ -21,6 +21,7 @@ public class OrganizationClient {
 
     public DocumentResponseRepresentation getDocumentByIdAsEntity(String id) {
         Response response = getDocumentById(id);
+        System.out.println("Document respnse:" + response);
         DocumentResponseRepresentation rep = response.readEntity(DocumentResponseRepresentation.class);
         response.close();
         return rep;
