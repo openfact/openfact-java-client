@@ -7,7 +7,6 @@ install: mvn install -P !build-extras -DskipTests=true -Dmaven.javadoc.skip=true
 
 script:
   - mvn test -P !build-extras -B
-  - mvn jacoco:report coveralls:report -Dcoveralls.token=$COVERALLS_TOKEN -DTRAVIS_JOB_ID=$TRAVIS_JOB_ID
 
 cache:
   directories:
