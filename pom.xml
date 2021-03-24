@@ -109,6 +109,7 @@
                 <version>4.3.0</version>
                 <configuration>
                     <repoToken>${coveralls.token}</repoToken>
+                    <serviceJobId>${env.TRAVIS_JOB_ID} </serviceJobId>
                 </configuration>
             </plugin>
 
